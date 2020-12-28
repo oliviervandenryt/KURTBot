@@ -1,6 +1,9 @@
 # KURTBot
 Automating KULeuven Reservation Tool
 
+# Gebruik
+Alle bijgevoegde bestanden downloaden, main.py uitvoeren na het aanpassen van de parameters.
+
 # Info
 Kan gebruikt worden vanaf 2 dagen op voorhand, uur maakt niet uit.
 Bv. om 28 januari om 7u 's morgens is het al mogelijk om 30 januari de hele dag te reserveren.
