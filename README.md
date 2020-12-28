@@ -3,6 +3,7 @@ Automating KULeuven Reservation Tool
 
 # Gebruik
 Alle bijgevoegde bestanden downloaden, main.py uitvoeren na het aanpassen van de parameters in dit bestand.
+`pip install selenium` moet ook uitgevoerd worden in de command prompt of terminal.
 
 # Info
 Kan gebruikt worden vanaf 2 dagen op voorhand, uur maakt niet uit.
