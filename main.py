@@ -10,8 +10,8 @@ times = [["08:00:00", "12:00:00"],  # tijdsloten van 4u
          ["12:00:00", "16:00:00"],
          ["16:00:00", "20:00:00"]
          ]
-seat = str(100935) # zie .csv bestanden
-date = str(date.today() + timedelta(days=1)) # bv. '2020-12-30'
+seat = str(106602) # zie .csv bestanden
+date = str(date.today() + timedelta(days=2)) # bv. '2020-12-30'
 subject = "Study"
 
 
