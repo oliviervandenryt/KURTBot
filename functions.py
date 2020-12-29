@@ -23,6 +23,7 @@ def reserve(driver, date, time, seat, subject="Study"):
     driver.find_element_by_id("kurtResourceSubject").send_keys(subject)
     driver.find_element_by_id("complyConditionsCheckbox").click()
     driver.find_element_by_id("submitReservationButton").click()
+    sleep(2)
 
 
 def get_name(driver, date, time, seat):
