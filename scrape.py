@@ -1,11 +1,9 @@
-from selenium import webdriver
 from functions import *
 from datetime import date, timedelta
 
-
 ''' PARAMETERS '''
 username = "r0******"
-password = "********"
+password = "***"
 times = [["08:00:00", "12:00:00"],  # tijdsloten van 4u
          ["12:00:00", "16:00:00"],
          ["16:00:00", "20:00:00"]
@@ -20,5 +18,5 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(5)
 driver.switch_to.window(driver.current_window_handle)
 login(driver, username, password)
-
-scrape(driver, 100000, 100100, 'bib')
+scrape(driver, 110001, 110200, 1, 'FAC')
+driver.close()
