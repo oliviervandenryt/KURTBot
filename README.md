@@ -3,7 +3,7 @@ Automating KULeuven Reservation Tool
 
 # Gebruik
 ## Pre-compiled
-Download v0.1.zip, pak dit uit, en voer main.exe uit.
+Download [v0.1.zip](https://github.com/oliviervandenryt/KURTBot/releases/tag/v0.1), pak dit uit, en voer main.exe uit.
 ## Zelf compilen
 Alle bijgevoegde bestanden downloaden, main.py uitvoeren na het aanpassen van de parameters in dit bestand.\
 `pip install numpy==1.19.3 selenium pandas pyqt5 pyqt5-tools ` moet ook uitgevoerd worden in de command prompt of terminal.
