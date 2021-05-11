@@ -1,3 +1,5 @@
+from selenium import webdriver
+
 from functions import *
 
 ''' PARAMETERS '''

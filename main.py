@@ -1,5 +1,7 @@
 from datetime import date, timedelta
 
+from selenium import webdriver
+
 from functions import *
 
 ''' PARAMETERS '''

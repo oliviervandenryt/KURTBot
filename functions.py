@@ -32,8 +32,8 @@ def get_name(driver, date, time, seat):
     print(url)
     driver.get(url)
     sleep(0.9)
-    thisobj = driver.find_element_by_xpath('//*[@id="kurtResourceDisplayName"]').get_attribute('innerText')
-    return str(thisobj)
+    display_name_text = driver.find_element_by_xpath('//*[@id="kurtResourceDisplayName"]').get_attribute('innerText')
+    return str(display_name_text)
 
 
 def update_csv(file, dictionary):
