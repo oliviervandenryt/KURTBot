@@ -1,7 +1,5 @@
-from time import sleep
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import csv
+from time import sleep
 
 
 def login(driver, username: str, password: str):
@@ -20,9 +18,12 @@ def reserve(driver, date, time, seat, subject="Study"):
     url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime={date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b"
     print(url)
     driver.get(url)
-    driver.find_element_by_id("kurtResourceSubject").send_keys(subject)
-    driver.find_element_by_id("complyConditionsCheckbox").click()
-    driver.find_element_by_id("submitReservationButton").click()
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    driver.find_element_by_xpath('//*[@id="kurtResourceSubject"]').send_keys(subject)
+    checkbox = driver.find_element_by_xpath('//*[@id="complyConditionsCheckbox"]')
+    driver.execute_script("arguments[0].click();", checkbox)
+    reservation_button = driver.find_element_by_id("submitReservationButton")
+    driver.execute_script("arguments[0].click();", reservation_button)
     sleep(2)
 
 
@@ -31,7 +32,7 @@ def get_name(driver, date, time, seat):
     print(url)
     driver.get(url)
     sleep(0.9)
-    thisobj = driver.find_element_by_xpath("//*[@id='kurtResourceDisplayName']").get_attribute('innerText')
+    thisobj = driver.find_element_by_xpath('//*[@id="kurtResourceDisplayName"]').get_attribute('innerText')
     return str(thisobj)
 
 
