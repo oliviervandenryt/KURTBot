@@ -11,8 +11,8 @@ times = [["10:00:00", "13:00:00"],  # timeslots
          ["19:00:00", "22:00:00"],
          ["08:00:00", "10:00:00"]
          ]
-date = str(date.today() + timedelta(days=4))  # bv. '2020-12-30'
-subject = "Study"
+date = str(date.today() + timedelta(days=4))  # 'yyyy-mm-dd'
+subject = "Study"  # subject used in booking
 default_sleep = 3.0  # increase when problems or slow internet
 
 '''CODE'''
