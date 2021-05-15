@@ -2,13 +2,15 @@ from selenium import webdriver
 
 from functions import *
 
+from secrets import *
+
 ''' PARAMETERS '''
-username = "r******"
-password = "******"
-start_id = 300000
-end_id = 301000
-step_size = 1
-save_file = 'seat_lists/agora2'
+username = users[0]
+password = passwords[0]
+start_id = 106602  # starting seat
+end_id = 106963  # ending seat
+step_size = 1  # step size in seat enumeration
+save_file = 'seat_lists/cba2'  # name & location for the csv
 
 '''CODE'''
 driver = webdriver.Chrome()

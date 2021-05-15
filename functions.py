@@ -2,20 +2,21 @@ import csv
 from time import sleep
 
 
-def login(driver, username: str, password: str):
+def login(driver, username: str, password: str, given_sleep: float = 3.0):
     driver.get("https://bib.kuleuven.be/faciliteiten/reserveren")
     driver.find_element_by_id("onetrust-accept-btn-handler").click()
     assert "Lokalen" in driver.title
-    sleep(0.2)
+    sleep(given_sleep/15.0)
     driver.find_element_by_xpath("/html/body/div[1]/div/div/div/div/div[2]/div/div[5]/div/div[1]/div[2]/p/a").click()
-    sleep(0.2)
+    sleep(given_sleep/15.0)
     driver.find_element_by_id("username").send_keys(username)
     driver.find_element_by_id("password").send_keys(password)
     driver.find_element_by_id("pwdLoginBtn").click()
 
 
-def reserve(driver, date, time, seat, subject="Study"):
-    url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime={date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b"
+def reserve(driver, date, time, seat, subject="Study", given_sleep: float = 3.0):
+    url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
+          f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b"  # multiline string
     print(url)
     driver.get(url)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
@@ -24,11 +25,12 @@ def reserve(driver, date, time, seat, subject="Study"):
     driver.execute_script("arguments[0].click();", checkbox)
     reservation_button = driver.find_element_by_id("submitReservationButton")
     driver.execute_script("arguments[0].click();", reservation_button)
-    sleep(2)
+    sleep(given_sleep*0.66)
 
 
 def get_name(driver, date, time, seat):
-    url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime={date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b "
+    url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
+          f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b"  # multiline string
     print(url)
     driver.get(url)
     sleep(0.9)
@@ -46,7 +48,7 @@ def update_csv(file, dictionary):
 def scrape(driver, begin, end, step, filename):
     labels = dict()
     for number in range(begin, end, step):
-        a = get_name(driver, '2020-12-29', ["08:00:00", "12:00:00"], str(number))
+        a = get_name(driver, '2020-12-29', ["08:00:00", "12:00:00"], str(number))  # seats, times and date don't matter
         if a != '':
             labels[str(number)] = a
             print(a)
