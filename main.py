@@ -26,6 +26,7 @@ for index, username in enumerate(users):
     driver.switch_to.window(driver.current_window_handle)
     login(driver, username, password, default_sleep)
     for time in times:
-        reserve(driver, date, time, seat, subject)
+        session_id = get_session_id(driver)
+        reserve(driver, date, time, seat, session_id, subject)
         sleep(1)
     driver.close()
