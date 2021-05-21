@@ -1,5 +1,6 @@
 import csv
 from time import sleep
+from datetime import timedelta
 
 
 def login(driver, username: str, password: str, given_sleep: float = 3.0):
@@ -22,9 +23,15 @@ def get_session_id(driver):
 
 
 def reserve(driver, date, time, seat, session_id, subject="Study", given_sleep: float = 3.0):
-    url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
-          f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b&sessionId={session_id}"
-    # multiline string
+    if time[1] == "00:00:00":
+        date2 = str(date + timedelta(days=1))
+        date = str(date)
+        url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
+              f"{date}T{time[0]}&EndDateTime={date2}T{time[1]}&ID={seat}&type=b&sessionId={session_id}"
+    else:
+        date = str(date)
+        url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
+              f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b&sessionId={session_id}"
     print(url)
     driver.get(url)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
@@ -37,6 +44,7 @@ def reserve(driver, date, time, seat, session_id, subject="Study", given_sleep: 
 
 
 def get_name(driver, date, time, seat):
+    date = str(date)
     url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
           f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b"  # multiline string
     print(url)
