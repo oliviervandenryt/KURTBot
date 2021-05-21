@@ -4,11 +4,7 @@ from datetime import timedelta
 
 
 def login(driver, username: str, password: str, given_sleep: float = 3.0):
-    driver.get("https://bib.kuleuven.be/faciliteiten/reserveren")
-    driver.find_element_by_id("onetrust-accept-btn-handler").click()
-    assert "Lokalen" in driver.title
-    sleep(given_sleep / 15.0)
-    driver.find_element_by_xpath("/html/body/div[1]/div/div/div/div/div[2]/div/div[5]/div/div[1]/div[2]/p/a").click()
+    driver.get("https://kuleuven.be/kurt")
     sleep(given_sleep / 15.0)
     driver.find_element_by_id("username").send_keys(username)
     driver.find_element_by_id("password").send_keys(password)
@@ -22,25 +18,22 @@ def get_session_id(driver):
     return session_id[3:-3]
 
 
-def reserve(driver, date, time, seat, session_id, subject="Study", given_sleep: float = 3.0):
+def reserve(driver, user, date, time, sid, session):
     if time[1] == "00:00:00":
         date2 = str(date + timedelta(days=1))
         date = str(date)
-        url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
-              f"{date}T{time[0]}&EndDateTime={date2}T{time[1]}&ID={seat}&type=b&sessionId={session_id}"
+        javascript = f"fetch('https://www-sso.groupware.kuleuven.be/sites/KURT/_vti_bin/KURTService/KURTService.svc" \
+                     f"/CallWebservice?webserviceUrl=/CreateReservation4?CurrentUID={user}%26SelectedResourceID={sid}" \
+                     f"%26SelectedBeginDatestring={date}%20{time[0]}%26SelectedEndDatestring={date2}%20{time[1]}" \
+                     f"%26Subject=U3R1ZHk=%26Body=%26OtherUsers=%26Answer=%26ImpersonatedUID=%26SessionID={session}')"
     else:
         date = str(date)
-        url = f"https://www-sso.groupware.kuleuven.be/sites/KURT/Pages/NEW-Reservation.aspx?StartDateTime=" \
-              f"{date}T{time[0]}&EndDateTime={date}T{time[1]}&ID={seat}&type=b&sessionId={session_id}"
-    print(url)
-    driver.get(url)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-    driver.find_element_by_xpath('//*[@id="kurtResourceSubject"]').send_keys(subject)
-    checkbox = driver.find_element_by_xpath('//*[@id="complyConditionsCheckbox"]')
-    driver.execute_script("arguments[0].click();", checkbox)
-    reservation_button = driver.find_element_by_id("submitReservationButton")
-    driver.execute_script("arguments[0].click();", reservation_button)
-    sleep(given_sleep * 0.66)
+        javascript = f"fetch('https://www-sso.groupware.kuleuven.be/sites/KURT/_vti_bin/KURTService/KURTService.svc" \
+                     f"/CallWebservice?webserviceUrl=/CreateReservation4?CurrentUID={user}%26SelectedResourceID={sid}" \
+                     f"%26SelectedBeginDatestring={date}%20{time[0]}%26SelectedEndDatestring={date}%20{time[1]}" \
+                     f"%26Subject=U3R1ZHk=%26Body=%26OtherUsers=%26Answer=%26ImpersonatedUID=%26SessionID={session}')"
+    driver.execute_script(javascript)
+    print(f"Booking complete for: at {date} from {time[0]} to {time[1]}")
 
 
 def get_name(driver, date, time, seat):

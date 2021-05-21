@@ -27,6 +27,6 @@ for index, username in enumerate(users):
     login(driver, username, password, default_sleep)
     for time in times:
         session_id = get_session_id(driver)
-        reserve(driver, date, time, seat, session_id, subject)
-        sleep(1)
+        reserve(driver, username, date, time, seat, session_id)
+        sleep(0.5)
     driver.close()
