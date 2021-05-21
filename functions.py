@@ -33,7 +33,7 @@ def reserve(driver, user, date, time, sid, session):
                      f"%26SelectedBeginDatestring={date}%20{time[0]}%26SelectedEndDatestring={date}%20{time[1]}" \
                      f"%26Subject=U3R1ZHk=%26Body=%26OtherUsers=%26Answer=%26ImpersonatedUID=%26SessionID={session}')"
     driver.execute_script(javascript)
-    print(f"Booking complete for: at {date} from {time[0]} to {time[1]}")
+    print(f"Booking complete for {user}: at {date} from {time[0]} to {time[1]}")
 
 
 def get_name(driver, date, time, seat):
