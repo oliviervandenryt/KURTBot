@@ -6,6 +6,8 @@ Make sure you have `selenium~=3.141.0` installed, and also add the Google Chrome
 ## Usage
 Parameters should be self explaining, for booking run `main.py`, for scraping/updating particular seat lists `scrape.py` can be used.
 ## Contributing
+<a href="https://www.buymeacoffee.com/olivierv" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" > ></a>
+
 Not needed, software should be fully functional. However this script is not guaranteed to be maintained and there is always room for improvement.  
   
 **Last seat update**: *16/05/2021*  
