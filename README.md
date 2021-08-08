@@ -15,4 +15,4 @@ Parameters should be self explaining, for booking run `main.py`, for scraping/up
 Code contributing is not needed, software should be fully functional. However this script is not guaranteed to be maintained and there is always room for improvement.  
   
 **Last seat update**: *16/05/2021*  
-**Last script update**: *21/05/2021*
+**Last script update**: *8/08/2021*
