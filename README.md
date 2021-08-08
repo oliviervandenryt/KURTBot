@@ -1,3 +1,7 @@
+
+# !! UPDATE
+Currently a simple Javascript seems to do the job way quicker than Python having to control a browser. You can find the script [here](https://github.com/oliviervandenryt/KURTBot/blob/master/KURTBot.js). All you have to do is change the parameters and run it in your browsers JS console at 6:00PM.
+
 # KURTBot
 Automating KULeuven Reservation Tool. Uses a simple Selenium setup to be able to automate the process of booking a seat at the KULeuven libraries. To use effectively, setup a (free) AWS EC2 instance with a cron job for the script at 6PM GMT+2 each day.
 
